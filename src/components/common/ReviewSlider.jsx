@@ -80,7 +80,7 @@ function ReviewSlider() {
                       : `${review?.review}`}
                   </p>
                   <div className="flex items-center gap-2 ">
-                    <h3 className="font-semibold text-yellow-100">
+                    <h3 className="font-semibold text-[#07beb8]">
                       {review.rating.toFixed(1)}
                     </h3>
                     <ReactStars

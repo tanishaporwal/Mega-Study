@@ -61,10 +61,10 @@ export default function CourseReviewModal({ setReviewModal }) {
               className="aspect-square w-[50px] rounded-full object-cover"
             />
             <div className="">
-              <p className="font-semibold text-richblack-5">
+              <p className="font-semibold text-richblack-600">
                 {user?.firstName} {user?.lastName}
               </p>
-              <p className="text-sm text-richblack-5">Posting Publicly</p>
+              <p className="text-sm text-richblack-600">Posting Publicly</p>
             </div>
           </div>
           <form
@@ -79,7 +79,7 @@ export default function CourseReviewModal({ setReviewModal }) {
             />
             <div className="flex w-11/12 flex-col space-y-2">
               <label
-                className="text-sm text-richblack-5"
+                className="text-sm text-richblack-600"
                 htmlFor="courseExperience"
               >
                 Add Your Experience <sup className="text-pink-200">*</sup>
@@ -99,7 +99,7 @@ export default function CourseReviewModal({ setReviewModal }) {
             <div className="mt-6 flex w-11/12 justify-end gap-x-2">
               <button
                 onClick={() => setReviewModal(false)}
-                className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
+                className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-100`}
               >
                 Cancel
               </button>

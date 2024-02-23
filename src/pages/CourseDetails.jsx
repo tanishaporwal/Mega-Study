@@ -49,8 +49,10 @@ function CourseDetails() {
   // Calculating Avg Review count
   const [avgReviewCount, setAvgReviewCount] = useState(0)
   useEffect(() => {
-    const count = GetAvgRating(response?.data?.courseDetails.ratingAndReviews)
-    setAvgReviewCount(count)
+    if (response?.data?.courseDetails?.ratingAndReviews) {
+      const count = GetAvgRating(response.data.courseDetails.ratingAndReviews);
+      setAvgReviewCount(count);
+    }
   }, [response])
   // console.log("avgReviewCount: ", avgReviewCount)
 
@@ -127,7 +129,7 @@ function CourseDetails() {
 
   return (
     <>
-      <div className={`relative w-full bg-richblack-200`}>
+      <div className={`relative w-full `}>
         {/* Hero Section */}
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative ">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
@@ -140,16 +142,16 @@ function CourseDetails() {
               />
             </div>
             <div
-              className={`z-30 my-5 flex flex-col justify-center gap-4 py-5 text-lg text-richblack-5`}
+              className={`z-30 my-5 flex flex-col justify-center gap-4 py-5 text-lg text-richblack-600`}
             >
               <div>
-                <p className="text-4xl font-bold text-richblack-5 sm:text-[42px]">
+                <p className="text-4xl font-bold text-richblack-600 sm:text-[42px]">
                   {courseName}
                 </p>
               </div>
               <p className={`text-richblack-200`}>{courseDescription}</p>
               <div className="text-md flex flex-wrap items-center gap-2">
-                <span className="text-[#07beb8]">{avgReviewCount}</span>
+                <span className="text-[#1c8d89]">{avgReviewCount}</span>
                 <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
                 <span>{`(${ratingAndReviews.length} reviews)`}</span>
                 <span>{`${studentsEnrolled.length} students enrolled`}</span>
@@ -170,14 +172,14 @@ function CourseDetails() {
                 </p>
               </div>
             </div>
-            <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
-              <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
+            <div className="flex w-full flex-col gap-4 border-y border-y-richblack-100 py-4 lg:hidden">
+              <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-500">
                 Rs. {price}
               </p>
-              <button className="yellowButton" onClick={handleBuyCourse}>
+              <button className="yellowButton text-richblack-700" onClick={handleBuyCourse}>
                 Buy Now
               </button>
-              <button className="blackButton">Add to Cart</button>
+              <button className="blackButton bg-richblack-50">Add to Cart</button>
             </div>
           </div>
           {/* Courses Card */}
@@ -190,10 +192,10 @@ function CourseDetails() {
           </div>
         </div>
       </div>
-      <div className="mx-auto box-content px-4 text-start text-richblack-5 lg:w-[1260px]">
+      <div className="mx-auto box-content px-4 text-start text-richblack-600 lg:w-[1260px]">
         <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[810px]">
           {/* What will you learn section */}
-          <div className="my-8 border border-richblack-600 p-8">
+          <div className="my-8 border border-richblack-100 p-8">
             <p className="text-3xl font-semibold">What you'll learn</p>
             <div className="mt-5">
               <ReactMarkdown>{whatYouWillLearn}</ReactMarkdown>
@@ -203,9 +205,9 @@ function CourseDetails() {
           {/* Course Content Section */}
           <div className="max-w-[830px] ">
             <div className="flex flex-col gap-3">
-              <p className="text-[28px] font-semibold">Course Content</p>
+              <p className="text-[28px] text-richblack-600 font-semibold">Course Content</p>
               <div className="flex flex-wrap justify-between gap-2">
-                <div className="flex gap-2">
+                <div className="flex gap-2 text-richblack-400">
                   <span>
                     {courseContent.length} {`section(s)`}
                   </span>
@@ -239,7 +241,7 @@ function CourseDetails() {
 
             {/* Author Details */}
             <div className="mb-12 py-4">
-              <p className="text-[28px] font-semibold">Author</p>
+              <p className="text-[28px] text-richblack-600 font-semibold">Author</p>
               <div className="flex items-center gap-4 py-4">
                 <img
                   src={
@@ -250,7 +252,7 @@ function CourseDetails() {
                   alt="Author"
                   className="h-14 w-14 rounded-full object-cover"
                 />
-                <p className="text-lg">{`${instructor.firstName} ${instructor.lastName}`}</p>
+                <p className="text-lg text-[#0a9396]">{`${instructor.firstName} ${instructor.lastName}`}</p>
               </div>
               <p className="text-richblack-600">
                 {instructor?.additionalDetails?.about}

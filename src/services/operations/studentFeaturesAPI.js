@@ -9,7 +9,7 @@ import { resetCart } from "../../slices/cartSlice";
 const {COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API} = studentEndpoints;
 
 function loadScript(src) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         const script = document.createElement("script");
         script.src = src;
 
@@ -17,7 +17,7 @@ function loadScript(src) {
             resolve(true);
         }
         script.onerror= () =>{
-            resolve(false);
+            reject(new Error("Failed to load script"));
         }
         document.body.appendChild(script);
     })
@@ -43,15 +43,15 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
                                 })
 
         if(!orderResponse.data.success) {
-            throw new Error(orderResponse.data.message);
+            throw new Error(orderResponse);
         }
         console.log("PRINTING orderResponse", orderResponse);
         //options
         const options = {
             key: process.env.RAZORPAY_KEY,
-            currency: orderResponse.data.message.currency,
-            amount: `${orderResponse.data.message.amount}`,
-            order_id:orderResponse.data.message.id,
+            currency: orderResponse.currency,
+            amount: `${orderResponse.amount}`,
+            order_id:orderResponse.id,
             name:"StudyNotion",
             description: "Thank You for Purchasing the Course",
             image:rzpLogo,

@@ -27,7 +27,7 @@ const Course_Card = ({course, Height}) => {
             />
           </div>
           <div className="flex flex-col gap-2 px-1 py-3">
-            <p className="text-xl text-richblack-600">{course?.courseName}</p>
+            <p className="text-xl text-richblack-700">{course?.courseName}</p>
             <p className="text-sm text-richblack-700">
               {course?.instructor?.firstName} {course?.instructor?.lastName}
             </p>

@@ -51,12 +51,17 @@ exports.showAllCategories = async (req, res) => {
 exports.categoryPageDetails = async (req, res) => {
     try {
       const { categoryId } = req.body
+      if (!categoryId) {
+        return res.status(400).json({
+          success: false,
+          message: "categoryId is required",
+        });
+      }
       console.log("PRINTING CATEGORY ID: ", categoryId);
       // Get courses for the specified category
       const selectedCategory = await Category.findById(categoryId)
         .populate({
           path: "courses",
-          match: { status: "Published" },
           populate: "ratingAndReviews",
         })
         .exec()
@@ -82,9 +87,8 @@ exports.categoryPageDetails = async (req, res) => {
       const categoriesExceptSelected = await Category.find({
         _id: { $ne: categoryId },
       })
-      let differentCategory = await Category.findOne(
-        categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
-          ._id
+      const differentCategory = await Category.findById(
+        categoriesExceptSelected[Math.floor(Math.random() * categoriesExceptSelected.length)]._id
       )
         .populate({
           path: "courses",
